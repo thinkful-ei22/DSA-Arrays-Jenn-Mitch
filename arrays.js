@@ -28,5 +28,41 @@ class Array {
     memory.set(this.ptr + this.length, value);
     this.length++;
   }
+
+  get(index){
+    if(index<0 || index>= this.length){
+      throw new Error('Index error');
+    }
+    return memory.get(this.ptr +index); //traverse the memory boxes from 0 to the index.
+  }
+
+  pop() {
+    if (this.length===0){
+      throw new Error('Index error');
+    }
+    const value = memory.get(this.ptr + this.length -1);
+    this.length--;
+    return value;
+  }
+
+  insert(index, value) {
+    if(index<0 || index>= this.length){
+      throw new Error('Index error');
+    }
+    if(this.length>=this._capacity){
+      this._resize((this.length+1)*Array.SIZE_RATIO); //if we're out of space, make the capacity larger
+    }
+    memory.copy(this.ptr + index + 1, this.ptr + index, this.length - index);
+    memory.set(this.ptr + index, value);
+    this.length++;
+  }
+
+  remove(index) {
+    if(index<0 || index>= this.length){
+      throw new Error('Index error');
+    }
+    memory.copy(this.ptr +index, this.ptr + index+1, this.length - index - 1);
+    this.length--;
+  } 
 }
 Array.SIZE_RATIO = 3;
