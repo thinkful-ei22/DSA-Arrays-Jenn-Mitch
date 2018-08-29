@@ -159,6 +159,10 @@ function stringRotation2(str1, str2){
   console.log(answer);
 }
 
+function stringRotation3(str1, str2) {
+  return (str2+str2).indexOf(str1) !== -1;
+}
+
 //urlify('i dont know what this does');
 // filtering([5, -1, 6, -4, 3, 25, 0]);
 //maxSum([-4,6,-3,5,-2,1]);
@@ -171,4 +175,6 @@ stringRotation('amazon','azonma');
 stringRotation('amazon','azonam');
 stringRotation2('pizza', 'zapiz');
 stringRotation2('pizza', 'zzaip');
+console.log(stringRotation3('pizza','zapiz'));
+console.log(stringRotation3('pizza','zzaip'));
 
