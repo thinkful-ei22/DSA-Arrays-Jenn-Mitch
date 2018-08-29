@@ -1,9 +1,19 @@
 function urlify(string){
 
   //const newString = string.replace(/ /g, '%20');
-  const stringArray = string.split(' ');
-  const newString = stringArray.join('%20');
+  
+  // const stringArray = string.split(' ');
+  // const newString = stringArray.join('%20');
+  let newString = '';
 
+  for (let i = 0; i < string.length; i++) {
+    let x = string.charAt(i);
+    if (x === ' ') {
+      newString = newString.concat('%20');
+    } else {
+      newString = newString.concat(x);
+    }
+  }
 
   console.log('input:', string);
   console.log('output:', newString);
@@ -11,6 +21,16 @@ function urlify(string){
 
 function filtering(array){
 
+  const newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    let x = array[i];
+    if (x >= 5) {
+      newArray.push(x);
+    }
+  }
+
+  console.log('input:', array);
+  console.log('output:', newArray);
 }
 
 function maxSum(array){
@@ -38,7 +58,7 @@ function stringRotation(str1, str2){
 }
 
 //urlify('i dont know what this does');
-//filtering([1,2,3,4,5,6,7,8,9,10]);
+filtering([5, -1, 6, -4, 3, 25, 0]);
 //maxSum([4,6,-3,5,-2,1]);
 //merge([1,3,6,8,11],[2,3,5,8,9,10]);
 //removeCharacters('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou');
