@@ -102,21 +102,61 @@ function twoD(array){
   console.log('input', array);
   let newArray = array;
 
+  const columns=[];
+  const rows=[];
+
   for(let i = 0; i < newArray.length; i++){
-    for(let j = 0; j < newArray[i].length; j++){
-      if(newArray[i][j] === 0){
-        for(let k = 0; k < newArray[i].length; k++){
-          newArray[i][k] = 0;
-        }
+    let row=newArray[i];
+    for(let j = 0; j < row.length; j++){
+      let item = row[j];
+      if(item === 0){
+        columns[j]=true;
+        rows[i]=true;
       }
     }
   }
-
+  for(let i=0; i<newArray.length; i++){
+    let row = newArray[i];
+    for(let j = 0; j < row.length; j++){
+      if(rows[i]||columns[j]){
+        row[j]=0;
+      }
+    }
+  }
   console.log('output', newArray);
 }
-
+//solution 1
 function stringRotation(str1, str2){
+  let first=str1[0];
+  let last=str1[str1.length-1];
+  let answer=false;
+  for(let i=0; i<str2.length; i++){
+    if(str2[i]===last){
+      if(str2[i+1]===first){
+        answer=true;
+      }
+    }
+  }
+  console.log(answer);
+}
 
+//solution 2
+function stringRotation2(str1, str2){
+  let answer;
+
+  if(str1.length !== str2.length) {
+    answer = false;
+  } else {
+    const str3 = str1 + str1;
+    console.log(str1, str2, str3);
+    if(str3.includes(str2)) {
+      answer = true;
+    } else {
+      answer = false;
+    }
+  }
+
+  console.log(answer);
 }
 
 //urlify('i dont know what this does');
@@ -125,8 +165,10 @@ function stringRotation(str1, str2){
 //merge([1,3,6,8,11],[2,3,5,8,9,10]);
 //removeCharacters('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou');
 //products([1,3,9,4,]);
-twoD([[1,0,1,1,0],[0,1,1,1,0],[1,1,1,1,1],[1,0,1,1,1],[1,1,1,1,1]]);
+//twoD([[1,0,1,1,0],[0,1,1,1,0],[1,1,1,1,1],[1,0,1,1,1],[1,1,1,1,1]]);
 // [[0,0,0,0,0],[0,0,0,0,0],[0,0,1,1,0],[0,0,0,0,0],[0,0,1,1,0]];
-//stringRotation('amazon','azonma');
-//stringRotation('amazon','azonam');
+stringRotation('amazon','azonma');
+stringRotation('amazon','azonam');
+stringRotation2('pizza', 'zapiz');
+stringRotation2('pizza', 'zzaip');
 
